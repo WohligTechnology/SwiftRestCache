@@ -26,16 +26,19 @@ public class RestCache {
     
     public func searchHi (completion: ((JSON) -> Void)) {
         do {
+            
             let urlString = apiUrl+"search/getResults"
+            let getData = Db.getCache(urlString, dataParams: "Null")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
 //                let str = NSString(data: data, encoding: NSUTF8StringEncoding)
 //                print("String: \(str)")
-                try! self.json =  JSON(data: response.responseObject as! NSData)
-//                print("response: \(self.json)") //prints the HTML of the page
-//                print("make response: \(response.responseObject)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                try! self.json =  JSON(data: response.responseObject as! NSData)
+                print("response: \(self.json)") //prints the HTML of the page
+//                print("make response: \(response.responseObject)") //prints the HTML of the page
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -53,12 +56,14 @@ public class RestCache {
         
         do {
             let urlString = adminUrl+"navigation/get"
+            let getData = Db.getCache(urlString, dataParams: "Null")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -76,12 +81,15 @@ public class RestCache {
         
         do {
             let urlString = adminUrl+"home/get"
+            let getData = Db.getCache(urlString, dataParams: "Null")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
+                
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                let makeResponse = "The response is: \(self.json)"
-                completion(self.json)
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -98,13 +106,15 @@ public class RestCache {
     public func getArticle (completion: ((JSON) -> Void)) {
         
         do {
-            let urlString = adminUrl+"article/get"
+            let urlString = apiUrl+"article/get"
+            let getData = Db.getCache(urlString, dataParams: "id=1")
+            completion(getData)
+            
             request.GET(urlString, parameters: ["id" : 1], completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "id=1", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -122,12 +132,14 @@ public class RestCache {
         
         do {
             let urlString = adminUrl+"image/getAllAlbums"
+            let getData = Db.getCache(urlString, dataParams: "Null")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -145,12 +157,14 @@ public class RestCache {
         
         do {
             let urlString = apiUrl+"image/getAlbumImages"
+            let getData = Db.getCache(urlString, dataParams: "id=1")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -170,12 +184,14 @@ public class RestCache {
         
         do {
             let urlString = adminUrl+"video/getAllAlbums"
+            let getData = Db.getCache(urlString, dataParams: "Null")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -193,12 +209,14 @@ public class RestCache {
         
         do {
             let urlString = apiUrl+"video/getAlbumVideos"
+            let getData = Db.getCache(urlString, dataParams: "id=1")
+            completion(getData)
+            
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                completion(self.json)
-                let makeResponse = "The response is: \(self.json)"
+                let makeResponse = "\(self.json)"
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {

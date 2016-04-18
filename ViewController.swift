@@ -39,6 +39,16 @@ class ViewController: UIViewController {
     
     @IBAction func sayHiTap(sender: AnyObject) {
         
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+        } else {
+            print("Internet connection FAILED")
+            let alert = UIAlertController(title: "No Internet Connection", message: "Make sure your device is connected to the internet", preferredStyle: .Alert)
+            let okayAction = UIAlertAction(title: "OK", style: .Default, handler: {(action: UIAlertAction) -> Void in})
+            alert.addAction(okayAction)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
         api.searchHi(self.showLabel)
         
     }

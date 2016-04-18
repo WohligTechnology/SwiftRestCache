@@ -7,6 +7,7 @@
 //
 
 import SQLite
+import SwiftyJSON
 
 var path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
 
@@ -22,6 +23,7 @@ public class Database {
     let hash = Expression<String>("hash")
     let timestamp = Expression<NSDate>("timestamp")
     let count = Expression<Int64>("count")
+    let response = Expression<String>("response")
     
     init () {
         print(path)
@@ -32,6 +34,7 @@ public class Database {
             t.column(hash, unique: true)
             t.column(timestamp)
             t.column(count)
+            t.column(response)
         })
         
     }
@@ -52,10 +55,31 @@ public class Database {
                 //Add the following row
             
             
-                let insert = CacheDetail.insert(url <- dataUrl, params <- dataParams, hash <- dataHash, timestamp <- timeStamp, count <- 1)
+                let insert = CacheDetail.insert(url <- dataUrl, params <- dataParams, hash <- dataHash, timestamp <- timeStamp, count <- 1, response <- dataResponse)
                 do {
-                    let rowid = try db.run(insert)
-                    print("inserted id: \(rowid)")
+                    let rowCount = try db.scalar(CacheDetail.count)
+                    if(rowCount == 100 && dataUrl != " ") {
+                        let leastVisited = CacheDetail.select(count.min)
+                        if(db.scalar(leastVisited.count) > 1) {
+                            
+                            leastVisited.order(timeStamp)
+                            let oldestTSRow = db.pluck(leastVisited)
+                            let removeRow = oldestTSRow?.get(id)
+                            let nowDelete = CacheDetail.filter(id == removeRow!)
+                            try db.run(nowDelete.delete())
+                            
+                        } else {
+                            
+                            try db.run(leastVisited.delete())
+                            
+                        }
+                        
+                    } else if (dataUrl != " ") {
+                        
+                        let rowid = try db.run(insert)
+                        print("inserted id: \(rowid)")
+                        
+                    }
                 } catch {
                     print("insertion failed: \(error)")
                 }
@@ -71,9 +95,9 @@ public class Database {
                     let update = fetchRequest.update(params <- dataParams, hash <- dataHash, timestamp <- timeStamp, count++)
                     do {
                         let rowid = try db.run(update)
-                        print("inserted id: \(rowid)")
+                        print("updated id: \(rowid)")
                     } catch {
-                        print("insertion failed: \(error)")
+                        print("updation failed: \(error)")
                     }
                 }
             }
@@ -82,5 +106,20 @@ public class Database {
             //                context.deleteObject(fetchedUser)
             //                //                    context.save()
             //            }
+    }
+    
+    func getCache(urlString: String, dataParams: String) -> JSON {
+        
+        let returnTable = CacheDetail.filter(url == urlString && params == dataParams)
+        if(db.scalar(returnTable.count) > 0) {
+            
+            let returnRow = db.pluck(returnTable)
+            let returnData = returnRow?.get(response)
+            let final = JSON(returnData!)
+            print("Final return statement: \(final)")
+            return final
+            
+        }
+        return JSON("Not found")
     }
 }
