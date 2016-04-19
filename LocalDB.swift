@@ -60,15 +60,21 @@ public class Database {
                 do {
                     let rowCount = try db.scalar(CacheDetail.count)
                     if(rowCount == 100 && dataUrl != " ") {
-                        let leastVisited = CacheDetail.select(count.min)
+                        let leastVisited = CacheDetail.select(count.min, id)
                         if(db.scalar(leastVisited.count) > 1) {
                             
                             leastVisited.order(timeStamp)
+                            print("least visited: \(db.scalar(leastVisited.count))")
                             let oldestTSRow = db.pluck(leastVisited)
-                            let removeRow = oldestTSRow?.get(id)
-                            let nowDelete = CacheDetail.filter(id == removeRow!)
+                            print("oldest row: \(oldestTSRow)")
+                            let removeRowId = oldestTSRow!.get(id)
+                            print("remove row: \(removeRowId)")
+                            let nowDelete = CacheDetail.filter(id == removeRowId)
                             try db.run(nowDelete.delete())
                             
+                            let rowid = try db.run(insert)
+                            print("inserted id: \(rowid)")
+                    
                         } else {
                             
                             try db.run(leastVisited.delete())

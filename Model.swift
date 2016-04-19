@@ -28,10 +28,10 @@ public class RestCache {
         do {
             
             let urlString = apiUrl+"search/getResults"
-            let getData = Db.getCache(urlString, dataParams: "Null")
+            let getData = Db.getCache(urlString, dataParams: "id=7")
             completion(getData)
             
-            request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
+            request.GET(urlString, parameters: ["id":7], completionHandler: {(response: HTTPResponse) in
 //                let str = NSString(data: data, encoding: NSUTF8StringEncoding)
 //                print("String: \(str)")
                 
@@ -42,7 +42,7 @@ public class RestCache {
                 
                 print("Make Response: \(makeResponse)")
                 
-                self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
+                self.Db.checkCache(urlString, dataParams: "id=7", dataResponse: makeResponse)
                 if(hasResponseChanged) {
                     hasResponseChanged = false
                     completion(self.json)
