@@ -38,7 +38,9 @@ public class RestCache {
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
 //                print("make response: \(response.responseObject)") //prints the HTML of the page
-                let makeResponse = "\(self.json)"
+                let makeResponse = String(self.json)
+                
+                print("Make Response: \(makeResponse)")
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -63,7 +65,7 @@ public class RestCache {
                 try! self.json =  JSON(data: response.responseObject as! NSData)
                 print("response: \(self.json)") //prints the HTML of the page
                 
-                let makeResponse = "\(self.json)"
+                let makeResponse = String(self.json)
                 
                 self.Db.checkCache(urlString, dataParams: "Null", dataResponse: makeResponse)
                 if(hasResponseChanged) {

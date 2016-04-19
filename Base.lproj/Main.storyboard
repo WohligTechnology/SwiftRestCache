@@ -18,69 +18,83 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UA0-R1-Mgu">
-                                <rect key="frame" x="20" y="28" width="48" height="30"/>
+                                <rect key="frame" x="20" y="94" width="48" height="30"/>
                                 <state key="normal" title="Say Hi!"/>
                                 <connections>
                                     <action selector="sayHiTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fcm-Jv-VBM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRT-2s-lL4">
-                                <rect key="frame" x="20" y="99" width="99" height="30"/>
+                                <rect key="frame" x="20" y="165" width="99" height="30"/>
                                 <state key="normal" title="Get navigation"/>
                                 <connections>
                                     <action selector="getNav:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBP-cm-hAX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLw-Zb-Rr9">
-                                <rect key="frame" x="20" y="188" width="41" height="30"/>
+                                <rect key="frame" x="20" y="254" width="41" height="30"/>
                                 <state key="normal" title="Home"/>
                                 <connections>
                                     <action selector="homeTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ubh-xN-met"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZ9-qQ-hiH">
-                                <rect key="frame" x="20" y="358" width="111" height="30"/>
+                                <rect key="frame" x="20" y="424" width="111" height="30"/>
                                 <state key="normal" title="Image all gallery"/>
                                 <connections>
                                     <action selector="imageAllTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ibp-5B-yzp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNe-HC-vOk">
-                                <rect key="frame" x="20" y="448" width="66" height="30"/>
+                                <rect key="frame" x="20" y="514" width="66" height="30"/>
                                 <state key="normal" title="Image list"/>
                                 <connections>
                                     <action selector="imageListTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fce-Nk-wiM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQt-Ko-d6M">
-                                <rect key="frame" x="20" y="620" width="64" height="30"/>
+                                <rect key="frame" x="20" y="686" width="64" height="30"/>
                                 <state key="normal" title="Video list"/>
                                 <connections>
                                     <action selector="videoListTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7f2-Of-5oh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9K-ja-3gI">
-                                <rect key="frame" x="20" y="276" width="45" height="30"/>
+                                <rect key="frame" x="20" y="342" width="45" height="30"/>
                                 <state key="normal" title="Article"/>
                                 <connections>
                                     <action selector="articleTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e0r-cB-jF4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuw-hu-3Z3">
-                                <rect key="frame" x="20" y="533" width="109" height="30"/>
+                                <rect key="frame" x="20" y="599" width="109" height="30"/>
                                 <state key="normal" title="Video all gallery"/>
                                 <connections>
                                     <action selector="videoAllTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Oh-cc-Bgy"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How many rows of cache do you want?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmj-rQ-nbd">
+                                <rect key="frame" x="58" y="20" width="298" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iHI-zi-btD">
+                                <rect key="frame" x="159" y="49" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="cacheLimit" destination="iHI-zi-btD" id="Mqf-dB-r7A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="254"/>
+            <point key="canvasLocation" x="346" y="266"/>
         </scene>
     </scenes>
 </document>

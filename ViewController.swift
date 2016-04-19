@@ -11,17 +11,21 @@ import CoreData
 import CryptoSwift
 import SwiftyJSON
 
-var id = 0
+var limit: Int = 100
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 class ViewController: UIViewController {
+    
     var api = RestCache()
-    @IBOutlet weak var HiLabel: UILabel!
+    
+    @IBOutlet weak var cacheLimit: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("App Delegate: \(appDelegate)")
+        
     }
 
     func showLabel(json: JSON){
@@ -35,6 +39,13 @@ class ViewController: UIViewController {
             print("Callback: \(json)")
         }
             
+    }
+    
+    func checkForCacheLimit() -> Int {
+        
+        limit = Int(cacheLimit.text!)!
+        return limit
+    
     }
     
     @IBAction func sayHiTap(sender: AnyObject) {

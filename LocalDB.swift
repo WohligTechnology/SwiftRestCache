@@ -42,6 +42,7 @@ public class Database {
     func checkCache(dataUrl: String, dataParams: String, dataResponse: String) -> Void {
         
         print("in the check cache function")
+        print("dataResponse: \(dataResponse)")
         let dataHash = dataResponse.md5()
         print("Hash is: \(dataHash)")
         
@@ -88,6 +89,8 @@ public class Database {
                 
                 //Compare Hashes
             let tableHash = db.scalar(fetchRequest.select(hash))
+            print("tableHash: \(tableHash)")
+            print("dataHash: \(dataHash)")
                 if(tableHash != dataHash) {
                     //Update the record
                     hasResponseChanged = true
