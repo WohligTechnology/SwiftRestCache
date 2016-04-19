@@ -36,11 +36,11 @@ public class RestCache {
 //                print("String: \(str)")
                 
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
 //                print("make response: \(response.responseObject)") //prints the HTML of the page
                 let makeResponse = String(self.json)
                 
-                print("Make Response: \(makeResponse)")
+//                print("Make Response: \(makeResponse)")
                 
                 self.Db.checkCache(urlString, dataParams: "id=7", dataResponse: makeResponse)
                 if(hasResponseChanged) {
@@ -63,7 +63,7 @@ public class RestCache {
             
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = String(self.json)
                 
@@ -89,7 +89,7 @@ public class RestCache {
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = "\(self.json)"
                 
@@ -114,7 +114,7 @@ public class RestCache {
             
             request.GET(urlString, parameters: ["id" : 1], completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = "\(self.json)"
                 
@@ -139,7 +139,7 @@ public class RestCache {
             
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = "\(self.json)"
                 
@@ -164,7 +164,7 @@ public class RestCache {
             
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = "\(self.json)"
                 
@@ -191,7 +191,7 @@ public class RestCache {
             
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = "\(self.json)"
                 
@@ -216,7 +216,7 @@ public class RestCache {
             
             request.GET(urlString, parameters: nil, completionHandler: {(response: HTTPResponse) in
                 try! self.json =  JSON(data: response.responseObject as! NSData)
-                print("response: \(self.json)") //prints the HTML of the page
+//                print("response: \(self.json)") //prints the HTML of the page
                 
                 let makeResponse = "\(self.json)"
                 

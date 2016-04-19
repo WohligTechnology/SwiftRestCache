@@ -26,7 +26,7 @@ public class Database {
     let response = Expression<String>("response")
     
     init () {
-        print(path)
+//        print(path)
         try! db.run(CacheDetail.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(url)
@@ -41,18 +41,18 @@ public class Database {
     
     func checkCache(dataUrl: String, dataParams: String, dataResponse: String) -> Void {
         
-        print("in the check cache function")
-        print("dataResponse: \(dataResponse)")
+//        print("in the check cache function")
+//        print("dataResponse: \(dataResponse)")
         let dataHash = dataResponse.md5()
-        print("Hash is: \(dataHash)")
+//        print("Hash is: \(dataHash)")
         
         let fetchRequest = CacheDetail.filter(url == dataUrl && params == dataParams)
-        print("Fetch request is fine \(fetchRequest)")
+//        print("Fetch request is fine \(fetchRequest)")
         var fetchCount = db.scalar(fetchRequest.count)
         let timeStamp = NSDate();
         
         if(fetchCount == 0) {
-                print("In the if statement")
+//                print("In the if statement")
                 //Add the following row
             
             
@@ -64,16 +64,16 @@ public class Database {
                         if(db.scalar(leastVisited.count) > 1) {
                             
                             leastVisited.order(timeStamp)
-                            print("least visited: \(db.scalar(leastVisited.count))")
+//                            print("least visited: \(db.scalar(leastVisited.count))")
                             let oldestTSRow = db.pluck(leastVisited)
-                            print("oldest row: \(oldestTSRow)")
+//                            print("oldest row: \(oldestTSRow)")
                             let removeRowId = oldestTSRow!.get(id)
-                            print("remove row: \(removeRowId)")
+//                            print("remove row: \(removeRowId)")
                             let nowDelete = CacheDetail.filter(id == removeRowId)
                             try db.run(nowDelete.delete())
                             
                             let rowid = try db.run(insert)
-                            print("inserted id: \(rowid)")
+//                            print("inserted id: \(rowid)")
                     
                         } else {
                             
@@ -84,7 +84,7 @@ public class Database {
                     } else if (dataUrl != " ") {
                         
                         let rowid = try db.run(insert)
-                        print("inserted id: \(rowid)")
+//                        print("inserted id: \(rowid)")
                         
                     }
                 } catch {
@@ -95,18 +95,18 @@ public class Database {
                 
                 //Compare Hashes
             let tableHash = db.scalar(fetchRequest.select(hash))
-            print("tableHash: \(tableHash)")
-            print("dataHash: \(dataHash)")
+//            print("tableHash: \(tableHash)")
+//            print("dataHash: \(dataHash)")
                 if(tableHash != dataHash) {
                     //Update the record
                     hasResponseChanged = true
-                    print("In the different hash function")
+//                    print("In the different hash function")
                     let update = fetchRequest.update(params <- dataParams, hash <- dataHash, timestamp <- timeStamp, count++)
                     do {
                         let rowid = try db.run(update)
-                        print("updated id: \(rowid)")
+//                        print("updated id: \(rowid)")
                     } catch {
-                        print("updation failed: \(error)")
+//                        print("updation failed: \(error)")
                     }
                 }
             }
@@ -125,7 +125,7 @@ public class Database {
             let returnRow = db.pluck(returnTable)
             let returnData = returnRow?.get(response)
             let final = JSON(returnData!)
-            print("Final return statement: \(final)")
+//            print("Final return statement: \(final)")
             return final
             
         }
